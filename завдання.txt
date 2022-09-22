@@ -1,0 +1,106 @@
+Завдання:
+
+1. Вивести на екран за допомогою змінних name та email текст "Привіт Alex. Твоя пошта alex@company.com"
+
+name = "Alex"
+email = "alex@company.com"
+
+2. Задана змінна s. Запустити RUN. Подивитися список атрибутів s. Треба знайти серед них метод для переведення тексту у великі літери, і дописати код, щоб на екран вивелося значення s великими літерами.
+
+s = "Hello world!"
+print(dir(s))
+
+
+3. Переставити (не прибирати) три методи в print так щоб на єкран вивелося вітання, де кожне слово починається з великої літери.
+s = "Hello world!"
+
+print(s.upper().title().lower())
+
+
+4. Є функція. Треба викликати її, щоб вона вивела на екран 'Alex'. Параметри функції поки що не використовувати.
+
+def hello():
+  print(f"Привіт, {hello.name}")
+
+
+5. Є клас Users. Треба його модифікувати, щоб у всіх інстансів цього класу автоматом було ім'я за замовчуванням "NoName". Наприклад b.name = "NoName"
+
+class Users:
+  pass
+
+a = Users()
+a.name = "Alex"
+print(f"Привіт, {a.name}")
+
+b.Users()
+print(f"Привіт, {b.name}")
+
+
+6. Зробити функцію hello методом greeting класа Users. Виконати greeting як метод (не функцію).
+
+class Users:
+  name = "NoName"
+
+def hello(obj):
+  print(f"Привіт, {obj.name}")
+
+
+7. Викликати функцію myUpper, передати їй аргумент "Hello". Функція повинна повернути на екран текст "HELLO".
+
+s = "Hello"
+print(type(s))
+myUpper = str.upper
+
+
+8. Написати функцію __init__ для класа Users. Вона повинна задати параметри name та email для інстансів. Створити інстанс a з ім'ям Alex та поштою alex@company.com
+
+class Users:
+  pass
+
+print(f"Привіт {a.name}, твоя пошта {a.email}")
+print("Власні атрибути істанса a:")
+print(a.__dict__)
+print("Атрибути інстанса a, включно з наслідуваними:")
+print(a.__dir__())
+
+
+9. Створити дочірній клас Moders на базі класа Users з додатковою властивістю password. Використати __init__ та об'єкт super(). Створити інстанс moder з ім'ям Conan, поштою conan@company.com та паролем "0000".
+
+class Users:
+  def __init__(self, n, e):
+    self.name = n
+    self.email = e
+
+a = Users("Alex", "alex@company.com")
+
+print(f"Привіт, {moder.name}, твоя пошта {moder.email}, твій пароль {moder.password}")
+
+
+10. Доповнити опис класа, щоб у його інстансів були аргументи name та email.
+
+from dataclasses import dataclass
+@dataclass
+class Users:
+  pass
+
+a = Users("Alex", "alex@company.com")
+print(f"Привіт, {a.name}, твоя пошта {a.email}")
+
+
+11. Зараз є клас на __dict__. Додати ще змінну password. Переробити на __slots__. Замість атрибута __dict__ вивести на екран значення атрибута __slots__.
+
+from dataclasses import dataclass
+@dataclass
+class Users:
+  name: str
+  email: str
+
+a = Users("Alex", "alex@company.com")
+print(f"Привіт, {a.name}, твоя пошта {a.email}")
+a.password = "0000"
+print(a.__dict__)
+
+
+12.
+Далі буде про параметри функцій
+Про створення класу HelloWorld

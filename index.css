@@ -1,0 +1,27 @@
+body {
+    font: 23px/46px Verdana, Geneva, Tahoma, sans-serif;
+    padding: 2vw;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font: 46px/92px Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 0.2rem;
+}
+
+[aria-current="page"] {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: gray;
+}
+
+a {color: blue;}
+
+p {
+    text-align: justify;
+    text-indent: 4vw;
+}
+
