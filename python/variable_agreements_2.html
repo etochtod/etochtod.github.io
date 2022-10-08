@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - змінні</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="variable_agreements_2.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 2:</h2>
+<p>Булевій змінній <i>marriage</i> привласнюється значення True, якщо людина одружена (if person is married). Підібрати краще ім'я змінній з урахуванням домовленостей.</p>
+<p>Створити додаткову проміжну змінну <i>is_leap_year</i> (чи високосний рік). Привласнити їй складну перевірку умови.</p>
+<p>Перейменувати змінну <i>userAvatar</i>. Після привласнення ця змінна не буде мінятися.</p>
+<br>
+
+<h2>Домовленості щодо змінних</h2>
+
+<p>В 2022 році прийнято писати значення змінних пітона в стилі <b>snake case</b> (<i>my_variable</i>). Раніше був популярним <b>camel case</b> (<i>myVariable</i>), коли друге слово з великої літери, і виходить посередині горб як у верблюда. Зараз це написання в пітоні використовують для назв класів та виключень. Все інше - <b>snake case</b>. Він легше читається.</p>
+<p>Заохочується використання так званих самодокументованих змінних. Наприклад, якщо нам потрібна змінна для зберігання статі людини, то небажано використовувати булеву змінну <i>sex</i> або <i>gender</i>. Краще використовувати змінну <i>is_male</i>. Справа в тому, що коли в коді зустрінеться таке написання</p>
+<pre>
+if is_male:
+    щось зробити
+</pre>
+то воно схоже на розмовну англійську (is/has), і читач легко зрозуміє, що <i>is_male</i> є булевою і дорівнює <span class="blue">True</span> коли стать чоловіча. Змінні <i>sex</i> та <i>gender</i> залишають неоднозначність.</p>
+<p>За таким же принципом змінюють <i>price</i> на <i>dollar_price</i>, або <i>id</i> на <i>book_id</i>, або <i>time</i> на <i>time_seconds</i>. Це замість написання коментарів.</p>
+<p>За потреби вводять додаткові проміжні змінні для поліпшення читабельності кода. Маневр допомагає зрозуміти код миттєво замість його тривалого аналізу.</p>
+<pre>
+if якась складна перевірка умови:
+    щось зробити
+</pre>
+<pre>
+is_mail_valid = якась складна перевірка умови
+
+if is_mail_valid:
+    щось зробити
+</pre>
+<br>
+<p>В пітоні немає констант. Змінні, які не планується змінювати, прийнято називати великими літерами. Наприклад, <i>REDIRECT_URL</i>.</p>
+<hr>
+<p>Таким чином, за допомогою правильного називання змінних, код робиться більш читабельним та самодокументованим. На продумування назв в пітоні прийнято витрачати час.</p>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result"></div>
+    </div>
+</body>
+</html>

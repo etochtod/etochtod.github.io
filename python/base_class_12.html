@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - базові класи</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="base_class_12.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 12:</h2>
+<p>Поправити код. Створити клас <span class="blue">Moders</span> на базі класа <span class="blue">Users</span> з додатковою властивістю <span class="blue">password</span>. Використати <span class="blue">__init__</span> та об'єкт <span class="blue">super()</span>. Створити інстанс <i>moder</i> з ім'ям "<span class="blue">Conan</span>", поштою "<span class="blue">conan@company.com</span>" та паролем "<span class="blue">0000</span>".</p>
+<br>
+
+<h2>Базові класи</h2>
+<p>Творцем класів є метаклас. Він визначає які атрибути будуть передані класу. Зокрема, метаклас <span class="blue">type</span> серед усіх інших атрибутів додає до класа атрибут <span class="blue">__bases__</span>. Це такі базові класи, чиї <span class="blue">__dict__</span> виступлять додатковими донорами атрибутів. А також <span class="blue">__dict__</span> базових класів для цих базових класів.</p>
+<img src="pictures/base_classes.png" alt="" width="100%">
+<p>Якщо метаклас дає фундаментальні атрибути, необхідні для підтримання роботи об'єкта як класа чи інстанса, то базові класи виступають донорами прикладних атрибутів - тих, задля яких, власне, і писалася програма.</p>
+<p>Базові класи вказуються на етапі декларації класа у дужках.</p>
+<pre>
+<span class="green"># базовий клас Форма</span>
+class Shape:
+    def __init__(self, name):
+        self.name = name
+
+    def get_area(self):
+        print(f"Площа '{self.name}' складе {self.area_cm()} см2)
+
+<span class="green"># клас Квадрат. Отримає name та get_area</span>
+class Square(<span class="red">Shape</span>):
+    def __init__(self, name, side_cm):
+        self.side_cm = side_cm
+        super().__init__(name)
+
+    def area_cm(self):
+        return self.side_cm ** 2
+
+<span class="green"># інстанс Квадрат</span>
+square = Square("квадрат", 10)
+
+<span class="green"># клас Коло</span>
+class Circle(<span class="red">Shape</span>):
+    def __init__(self, name, radius_cm):
+        self.radius_cm = radius_cm
+        super().__init__(name)
+
+    def area_cm(self):
+        return 3.14 * self.radius_cm ** 2
+
+<span class="green"># інстанс Коло</span>
+circle = Circle("коло", 5)
+</pre>
+<p>Команда <span class="blue">return</span> завершує роботу метода та повертає результат. Методи з <span class="blue">return</span> можна використовувати в ланцюгах методів, або привласнювати результат змінним, або виводити на екран.</p>
+<p>В коді є ще одна незрозуміла команда <span class="blue">super()</span>. Навіщо вона? Для класа <span class="blue">Circle</span> можна було б при ініціалізації <span class="blue">name</span> використати різні варианти.</p>
+<pre>
+def __init__(self, name, radius_cm):
+    self.radius_cm = radius_cm
+
+    <span class="green"># можна прямо задати атрибут name</span>
+    self.name = name
+    <span class="green"># можна прямо викликати функцію базового класа</span>
+    Shape.__init__(self, name)
+    <span class="green"># але використовується якийсь super</span>
+    super().__init__(name)
+</pre>
+<p>Справа в тому, що базових класів можна вказати через кому декілька. І це означає, що якщо ми будемо послідовно викликати конструктори <span class="blue">__init__</span> базових класів, базових класів для тих базових класів, то деякі конструктори викликаються декілька разів. Щоб цьому запобігти і використовується об'єкт <span class="blue">super</span>. Він є посиланням на базові класи, причому містить алгоритм обхода базових класів, обійде кожного по разу, і не дасть запустити один атрибут декілька разів.</p>
+<br>
+<h2>Абстрактні класи</h2>
+
+<p>В попередньому прикладі створювався базовий клас <span class="blue">Shape</span>, і на його базі робилися інші класи. Проблема в тому, що його метод <span class="blue">get_area</span> вимагає щоб у класа був обов'язково прописаний метод <span class="blue">area_cm</span>. Але програмист може написати, наприклад, клас <span class="blue">rectangle</span>, і забути дописати йому <span class="blue">area_cm</span>. Це помилка, і вона одразу не виявиться.</p>
+<p>Щоб подібному запобігти, використовують абстрактні класи та методи.</p>
+<pre>
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    ...
+    @abstractmethod
+    def area_cm(self):
+        pass
+
+    @abstractmethod
+    def perimeter_cm(self):
+        pass
+</pre>
+<p>Ця конструкція вимагає, щоб ті класи, які візьмуть <span class="blue">Shape</span> за базу, обов'язково прописали у себе методи <span class="blue">area_cm</span> та <span class="blue">perimeter_cm</span>. Інакше програма не запуститься і запропонує виправити помилку.</p>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

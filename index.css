@@ -18,6 +18,21 @@ h1 {
     color: gray;
 }
 
+ul {
+    background-color: #ddd;
+    border: 1px solid #888;
+    padding: 5px;
+    margin-left: 20px;
+}
+
+li {
+    padding-left: 10px;
+}
+
+ol li:nth-child(even) {
+    background-color: #ddd;
+}
+
 a {color: blue;}
 
 p {

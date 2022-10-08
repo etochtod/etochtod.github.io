@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - блоки кода, простір імен</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="namespaces_7.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 7:</h2>
+<p>Додати до змінної <i>hello</i> атрибут <i>name</i> зі значенням "<span class="blue">Alex</span>".</p>
+<p>Виконати код <span class="blue">hello</span>.</p>
+<br>
+
+<h2>Блоки кода</h2>
+
+<p>Блок кода - це код, який можна за бажанням виконати пізніше. В пітоні є спеціальний синтаксис для створення змінної, яка буде вказувати на блок кода:</p>
+<pre>
+def f():
+    <i>s</i> = "Hello"
+    print(<i>s</i>)
+<span class="green"># змінній f привласнений код, але він ще не виконується.</span>
+
+f() <span class="green"># код виконується. На екрані "Hello"</span>
+</pre>
+<ul>
+    <li>
+        Змінна <i>f</i> вказує на об'єкт з атрибутом <span class="blue">__code__</span>, в якому зберігається код.
+    </li>
+    <li>
+        Після <span class="blue">def</span> йдуть рядки з відступами. Прийнято задавати їх кратними чотирьом прогаликам.
+    </li>
+    <li>
+        Виконати блок кода можна написав назву змінної плюс дужки.
+    </li>
+</ul>
+<p>Блоки кода типово використовують для запобігання повторюваності кода. Якщо якийсь код повторюється в програмі, то його виносять окремо щоб викликати декілька разів.</p>
+<br>
+<h2>Простір імен</h2>
+
+<p>До цього змінні задавалися в глобальному просторі імен. Список можна подивитися командою <span class="blue">global()</span>. Якщо змінна задається в блоці кода, то це локальний простір імен. За межами блока кода її не видно.</p>
+<p>Подивитися список локальних змінних блока кода можна командою <span class="blue"><i>f</i>.__code__.co_varnames</span>. Об'єкт <span class="blue">__code__</span> містить атрибут <span class="blue">co_varnames</span> зі списком змінних.</p>
+<p>Альтернативою змінним глобального та локального простору є зберігання значень в атрибутах. Якщо у об'єкта є такий атрибут як <span class="blue">__dict__</span>, то в ньому зберігаються прикладні атрибути, які програміст може додатково причепити до об'єкта.</p>
+<pre>
+def <i>f</i>():
+    print(<i>f</i>.greeting)
+
+<i>f</i>.greeting = "Вітаннячко"
+<span class="green"># додали прикладний атрибут</span>
+
+f()
+<span class="green"># виведе на екран "Вітаннячко"</span>
+</pre>
+<p>Оскільки у об'єкта <i>f</i> є атрибут <span class="blue">__dict__</span>, то ми до нього можемо причепити прикладний атрибут <span class="blue">greeting</span>. Коли наш блок кода виконується, то друкує цей прикладний атрибут.</p>
+<p>Окрім власних атрибутів в <span class="blue">__dict__</span>, об'єкт містить інші атрибути, але вони вже не належать безпосередньо об'єкту, а унаслідувані. В <span class="blue">__dict__</span> їх не видно.</p>
+<br>
+<h2>Аргументи та параметри</h2>
+
+<p>У дужках у блока кода можуть бути дотаткові змінні, які йому передаються в момент виклика (<span class="blue"><i>lst</i>.append(15)</span>). Вони добавляться в <span class="blue"><i>f</i>.__code__.co_varnames</span>. Змінні перелічуються через кому. В момент декларації блока кода такі змінні називаються <b>параметрами</b>. А коли блок кода викликається, то їх називають <b>аргументами</b>.</p>
+<pre>
+def hello(txt): <span class="green"># txt - це параметр</span>
+    print(txt)
+
+hello("Hello world!") <span class="green"># "Hello world!" - це аргумент</span>
+</pre>
+<p>Параметри приймаються, аргументи передаються.</p>
+<p>Прості типи даних передаються блоку кода як копія (<span class="blue">immutable</span>), складні - за посиланням (<span class="blue">mutable</span>).</p>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

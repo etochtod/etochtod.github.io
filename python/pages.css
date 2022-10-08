@@ -1,6 +1,5 @@
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
 }
 
 ::-webkit-scrollbar {
@@ -24,21 +23,48 @@ body {
 }
 
 #left {
-    padding: 10px;
+    background-color: #dfdfdf;
+    padding: 2vw;
     overflow-y: auto;
     width: 50%;
-    font-size: 23px;
-    line-height: 46px;
+    font-size: clamp(16px, 1.2vw, 22px);
+    line-height: clamp(24px, 2.4vw, 44px);
+}
+
+article {
+    max-width: 800px;
+    margin-inline: auto;
+    text-align: justify;
+    background-color: white;
+    outline: 2vw solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 2vw white;
+}
+
+pre {
+    text-align: left;
+}
+
+#left p {
+    text-indent: 2vw;
 }
 
 #navbar {
-    padding: 10px;
-    background-color: gray;
+    padding: max(1vw, 7px);
+    margin: -2vw -2vw 2vw -2vw;
 }
 
 #navbar a {
-    color: white;
+    color: #eea;
     text-decoration: none;
+    text-shadow: 1px 1px 1px black;
+    transition: text-shadow 0.5s;
+    padding: 5px;
+}
+
+#navbar a:hover {
+    background-color: gray;
+    box-shadow: 0 0 5px black;
+    border-radius: 5px;
 }
 
 #navbar a:hover, #reset:hover, #run:hover, #next:hover {
@@ -47,11 +73,9 @@ body {
 }
 
 h2 {
+    color: #444;
     text-align:center;
-}
-
-#left p {
-    text-indent: 50px;
+    font-size: clamp(24px, 2vw, 36px);
 }
 
 i {
@@ -75,8 +99,10 @@ pre {
     background-color: #ddd;
     white-space: pre-wrap;
     font-family: Consolas, 'Courier New', Courier, monospace;
-    border: 1px solid #bbb;
-    padding: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 1vw #ccc;
+    border-radius: 10px;
+    padding: 1vw;
 }
 
 #right {
@@ -93,6 +119,7 @@ pre {
     padding-left: 7px;
     outline: 1px solid gray;
     white-space: nowrap;
+    height: 50%;
 }
 
 #dragger {
@@ -112,10 +139,11 @@ pre {
     width: calc(50% - 26px);
     margin: 5px 0 5px 10px;
     padding: 5px;
-    color: white;
+    color: #ffb;
     background-color: gray;
     text-align: center;
     cursor: pointer;
+    transition: text-shadow 0.25s;
 }
 
 #next {
@@ -124,7 +152,8 @@ pre {
 }
 
 #tArea, #result, #result div {
-    font: 25px/37px Consolas, 'Courier New', Courier, monospace;
+    /*font: clamp(18px, 1.2vw, 27px)/clamp(26px, 2.4vw, 54px) Consolas, 'Courier New', Courier, monospace;*/
+    font: clamp(18px, 1.2vw, 26px)/clamp(22px, 2.2vw, 44px) Consolas, 'Courier New', Courier, monospace;
 }
 
 #result {
@@ -137,14 +166,4 @@ pre {
     background-color: #ddd;
     margin: 10px;
     padding: 5px;
-}
-
-@media only screen and (max-width: 1300px) {
-    #result, #tArea {
-        font: 18px/30px Consolas, 'Courier New', Courier, monospace;
-    }
-    #left {
-        font-size: 18px;
-        line-height: 30px;
-    }
 }

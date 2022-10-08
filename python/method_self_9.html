@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - функції, методи та self</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="method_self_9.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 9:</h2>
+<p>Блок кода <span class="blue">code</span> прив'язаний до класа <span class="blue">Foods</span>. Виконати його двічі: спочатку як функцію класа <span class="blue">Foods</span>, а потім як метод інстанса <i>a</i>.</p>
+<p>Спочатку на екран виведуться атрибути класа за замовчуванням, а потім атрибути інстанса <i>a</i>.</p>
+<p>Змінну <i>obj</i> перейменувати згідно домовленостей.</p>
+<br>
+
+<h2>Функції, методи та self</h2>
+
+<p>Блок кода можна прив'язати як атрибут до класа чи інстанса. Якщо ми прив'язали блок кода до класа, то класу він належить прямо (записаний в <span class="blue">__dict__</span>), а всі інстанси отримають цей блок кода за наслідуванням (посилання).</p>
+<p>Виконання власного кода відрізняється від виконання кода за наслідуванням. В першому випадку блок кода викликається як <b>функція</b>, а в другому - як <b>метод</b>. Якщо код не належить прямо інстансу, а є наслідуванням від класа, то першим аргументом, який автоматично передасться блоку кода, буде посилання на інстанс. Цей параметр не видно, але він буде переданий. В цьому різниця між методом та функцією.</p>
+<pre>
+<span class="green"># створимо клас</span>
+class Users:
+    name = "NoName"
+
+<span class="green"># створимо його інстанс</span>
+<i>a</i> = Users()
+<i>a</i>.name = "Alex"
+
+<span class="green"># створимо якийсь блок кода</span>
+def code(obj):
+    print(obj.name)
+
+<span class="green"># прив'яжемо блок до класа як атрибут show_name</span>
+Users.show_name = code
+
+<span class="green"># виконаємо із класа, якому блок кода належить прямо</span>
+Users.show_name(Users) <span class="green"># NoName</span>
+
+<span class="green"># виконаємо із інстанса, який унаслідував</span>
+<i>a</i>.show_name() <span class="green"># Alex</span>
+</pre>
+<p>В останньому рядку метод не має параметра в дужках, хоча це вимагається. Це тому що перший параметр у нього автоматично додається - це посилання на інстанс.</p>
+<p>Коли ми пишемо блоки кода в класі з прицілом, що їх будуть виконувати інстанси, то ми зобов'язані як мінімум мати один параметр у дужках. Є домовленість його називати змінною <i>self</i>. Далі в тілі блока кода ми маємо доступ до інстанса завдяки цій змінній.</p>
+<pre>
+def code(self):
+    print(self.name)
+</pre>
+<p>Замість <i>self</i> буде підставлений конкретний інстанс.</p>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

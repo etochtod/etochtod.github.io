@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - змінні</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="variable_types_1.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 1:</h2>
+<p>Вивести на екран за допомогою змінних <i>name</i> та <i>email</i> текст:</p>
+"<span class="blue">Привіт, Alex. Твоя пошта alex@company.com</span>"
+<p>Використати синтаксис з <i>f</i>.</p>
+<br>
+
+<h2>Змінні. Загальні відомості.</h2>
+<ul>
+    <li>В пітоні змінні чутливі до регістру (<i>A</i> відрізняється від <i>a</i>).</li>
+    <li>Декларувати перед використанням не треба (перше присвоювання і є декларацією).</li>
+    <li>Типізація динамічна (вказувати тип змінної не треба).</li>
+</ul>
+<pre>
+<span class="green"># integer</span>
+<i>a</i> = 5
+
+<span class="green"># float</span>
+<i>b</i> = 5.1
+
+<span class="green"># string</span>
+<i>c</i> = "text"
+
+<span class="green"># boolean - булеве значення (True або False).</span>
+<i>d</i> = True
+
+<span class="green"># list - список (або масив в деяких мовах).</span>
+<i>e</i> = [10, 20, 15]
+
+<span class="green"># tuple - кортеж. Як list, тільки його не можна міняти (але він швидкіший та компактніший).</span>
+<i>f</i> = (10, 20, 15)
+
+<span class="green"># set - множина (елементи не можуть повторюватися).</span>
+<i>g</i> = {10, 20, 15}
+
+<span class="green"># dictionary - пари "ключ":значення.</span>
+<i>h</i> = {
+    "name": "Alex",
+    "age": 27
+}
+</pre>
+<br>
+<h2>Виведення на екран</h2>
+<p>На екран виводить команда <span class="blue">print()</span></p>
+<pre>
+print(<i>a</i>)
+<span class="green"># 5</span>
+
+print("значення b дорівнює: " + <i>b</i>)
+<span class="green"># значення b дорівнює: 5.1</span>
+
+print(f"значення a дорівнює {<i>a</i>}, значення b дорівнює {<i>b</i>}")
+<span class="green"># значення a дорівнює 5, значення b дорівнює 5.1</span>
+</pre>
+<p>Лапки можуть бути як одинарні так і подвійні. Якщо перед лапками стоїть f, то можна вставляти всередину текста фігурні дужки зі змінними. У фігурних дужках можуть бути як змінні так і вирази. Наприклад, <span class="blue">{<i>a</i> + <i>b</i>}</span>.</p>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result"></div>
+    </div>
+</body>
+</html>

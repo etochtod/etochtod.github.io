@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - __slots__</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="slots_14.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 14:</h2>
+<p>Є клас на <span class="blue">__dict__</span>. Додати ще атрибут <span class="blue">password</span>. Переробити на <span class="blue">__slots__</span>. Замість атрибута <span class="blue">__dict__</span> вивести на екран значення атрибута <span class="blue">__slots__</span>.</p>
+<p>Інстансу <i>a</i> привласнити пароль "<span class="blue">0000</span>".</p>
+<br>
+
+<h2>__slots__</h2>
+<p>Коли об'єкт має атрибут <span class="blue">__dict__</span>, то це зручний та гнучкий простір імен. Можна на ходу додавати нові атрибути, як завгодно маніпулювати ними. Недоліком є повільність та займання великого обсягу пам'яті.</p>
+<p>Якщо програміст хоче написати ефективний по пам'яті та швидкості виконання клас, то він має переробити його, додавши атрибут <span class="blue">__slots__</span>. Якщо ми додамо в клас такий атрибут, то він є антагоністом для <span class="blue">__dict__</span>. Останній не буде використовуватися. Натомість, атрибути підуть у <span class="blue">__slots__</span>.</p>
+<pre>
+class Users:
+    __slots__ = ["name", "email"]
+
+    def __init__(self, name, mail):
+        self.name = name
+        self.email = mail
+
+<i>a</i> = Users("Alex", "alex@company.com")
+print(<i>a</i>.__slots__) <span class="green"># ['name', 'email']</span>
+<span class="green"># __dict__ буде відсутній серед атрибутів</span>
+</pre>
+<p>Ми заздалегідь прописуємо всі атрибути-дані, втрачаємо гнучкість, натомість отримуємо ефективність. Всі нащадки будуть також мати <span class="blue">__slots__</span>.</p>
+        </article><br><br>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

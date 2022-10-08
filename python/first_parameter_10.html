@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - перший параметр блока кода</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="first_parameter_10.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 10:</h2>
+<p>Завдана змінна <i>s</i>. Її породив клас <span class="blue">str</span>. До класу <span class="blue">str</span> прив'язаний блок кода <span class="blue">upper</span>.</p>
+<p>Змінна <span class="blue">upper_class</span> вказує на функцію <span class="blue">str.upper</span>. Змінна <span class="blue">upper_instance</span> вказує на метод <span class="blue">a.upper</span>.</p>
+<p>Вивести на екран результат виконання <span class="blue">upper_class</span> та <span class="blue">upper_instance</span> для змінної <i>s</i>.</p>
+<br>
+
+<h2>Перший параметр блока кода</h2>
+
+<ol>
+    <li>
+        Якщо блок кода виконується із класа до якого він безпосередньо прив'язаний, то він виконується як функція. Параметри не міняються.
+    </li>
+    <li>
+        Якщо блок кода виконується із інстанса, якому він переданий за посиланням в результаті наслідування, то першим параметром автоматом підставиться сам інстанс.
+    </li>
+    <li>
+        Якщо перед блоком кода стоїть рядок <span class="blue">@staticmethod</span>, то це відміняє перший параметр для інстанса. Буде як функція.
+    </li>
+    <li>
+        Якщо перед блоком кода стоїть рядок <span class="blue">@classmethod</span>, то першим параметром замість інстанса буде клас. Блок кода буде знати до якого класа він прив'язаний.
+    </li>
+</ol>
+<pre>
+class Users:
+    s = "Hello world!"
+
+    <span class="green"># блок кода як функція</span>
+    def func():
+        print(Users.s)
+    <span class="green"># із інстанса не викличеш,</span>
+    <span class="green"># бо автоматом підставить перший аргумент,</span>
+    <span class="green"># а тут пусті дужки.</span>
+
+    <span class="green"># блок кода як метод</span>
+    def meth(self):
+        print(self.s)
+
+    <span class="green"># блок кода як функція для інстансів</span>
+    @staticmethod
+    def stat():
+        print(Users.s)
+    <span class="green"># можна викликати з інстанса</span>
+
+    <span class="green"># блок кода якому передається клас</span>
+    @classmethod
+    def clas(cls):
+        print(cls.s)
+    <span class="green"># прийнято перший параметр називати cls</span>
+
+a = Users()
+
+Users.func()
+a.meth()
+a.stat()
+a.clas()
+</pre>
+<p>Якщо блок кода описаний за межами класа і не прив'язаний, то в чистому вигляді він виконується як функція.</p>
+<br>
+<h2>Наслідування блока кода</h2>
+<p>Коли інстанс наслідує блок кода від класа, то це не просто посилання, а новий об'єкт.</p>
+<pre>
+<i>s</i> = "Hello world!"
+<i>a</i> = <i>s</i>.upper
+<i>b</i> = str.upper
+
+print(<i>a</i> is <i>b</i>) <span class="green"># False</span>
+</pre>
+<p>Тобто, <span class="blue">upper</span> для класа та інстанса - це два різних об'єкти. В них різні метакласи.</p>
+<pre>
+print(<i>a</i>.__class__.__name__) <span class="green"># builtin_function_or_method</span>
+print(<i>b</i>.__class__.__name__) <span class="green"># function_descriptor</span>
+</pre>
+<p>Але атрибут кода в них буде однаковий:</p>
+<pre>
+print(<i>a</i>.__code__ is <i>b</i>.__code__) <span class="green"># True</span>
+</pre>
+<p>Атрибут <span class="blue">__code__</span> наслідується в певному обрамленні.</p>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

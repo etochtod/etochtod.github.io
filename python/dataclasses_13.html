@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - dataclasses</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="dataclasses_13.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 13:</h2>
+<p>Доповнити опис класа, щоб у його інстансів були аргументи <span class="blue">name</span> та <span class="blue">email</span>.</p>
+<br>
+
+<h2>Датакласи</h2>
+<p>Для інстансів в пітоні використовується конструктор <span class="blue">__init__</span>. В ньому домовлено прописувати атрибути-дані які належать безпосередньо інстансу. Іноді таких конструкторів треба писати багато, і для автоматизації їх написання використовують спрощений варіант - <span class="blue">dataclass</span>.</p>
+<pre>
+from dataclasses import dataclass
+
+@dataclass
+class Shape:
+  name: str
+  is_3d: bool
+
+a = Shape("rectangle", False)
+</pre>
+<p>Це створить клас <span class="blue">Shape</span> з конструктором <span class="blue">__init__</span>, де будуть прописані дві змінні. Давайте покроково розберемо як ця "магія" відбулася.</p>
+<ol>
+    <li>
+        Спочатку в першому рядку ми звертаємося до файла <span class="blue">dataclasses.py</span> з вимогою взяти з нього функцію <span class="blue">dataclass</span>.
+    </li>
+    <li>
+        Далі йде запис <span class="blue">@dataclass</span>. Він означає, що блок кода нижче по тексту буде переданий як агрумент для функції <span class="blue">dataclass</span>. Виконається <span class="blue">dataclass(Shape)</span>.
+    </li>
+    <li>
+        Всередині класа <span class="blue">Shape</span> є конструкції типа <span class="blue">name: str</span>. Коли пітон зустрічає таку конструкцію, то він додає її в спеціальний атрибут класа <span class="blue">__annotations__</span>.
+    </li>
+    <li>
+        Функція <span class="blue">dataclass</span> бере цей атрибут, та створює для класа метод <span class="blue">__init__</span> з усіма змінними, що перелічені в <span class="blue">__annotations__</span>.
+    </li>
+</ol>
+<p>На виході ми отримаємо такий самий клас з <span class="blue">__init__</span>, якби ми його самі написали руцями. Єдина відмінність в тому, що у нашого класа буде додатково атрибут <span class="blue">__annotations__</span>.</p>
+<br>
+<h2>Контроль типів</h2>
+<p>Після створення класа за допомогою dataclass, перфекціоніст може видалити <span class="blue">dataclass</span> та <span class="blue">__annotations__</span> для економії пам'яті. Але анотації мають свою користь. Їх часто використовують для перевірки типів змінних. Так звана строга типізація - щоб до рядка не додавалися числа, чи щось подібне. Контроль типів є запобіжником для великої групи помилок, які важко відследити. Чистий пітон не відреагує на нестиковки в анотаціях при некоректному привласнюванні, але є різні тайпчекери, які на етапі написання кода можуть вказати на помилки. Зазвичай, вони вбудовуються в інтегровані системи розробки типа <a href="https://www.jetbrains.com/pycharm/"><span class="blue">PyCharm</span></a>.</p>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - конструктор __init__</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="__init__constructor_11.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 11:</h2>
+<p>Написати конструктор <span class="blue">__init__</span> для класа <span class="blue">Users</span>. Він повинен задати атрибути <span class="blue">name</span> та <span class="blue">email</span> для інстансів. Створити інстанс <i>a</i> з ім'ям "<span class="blue">Alex</span>"" та поштою "<span class="blue">alex@company.com</span>".</p>
+<br>
+<h2>Метаклас type</h2>
+<p>При створенні класа, його метакласом за замовчуванням є <span class="blue">type</span>. Коли створюється інстанс класа, викликається <span class="blue">type.__call__</span>.</p>
+<pre>
+class Users:
+    pass
+<span class="green"># це є синтаксичним цукором для команди нижче</span>
+Users = type.__call__('Users', (), {})
+
+
+a = Users()
+<span class="green"># це є синтаксичним цукором для команди нижче</span>
+a = Users.__class__.__call__()
+<span class="green"># або</span>
+a = type.__call__(Users)
+</pre>
+<p>Синтаксичний цукор потрібен, щоб створення класів та інстансів ззовні виглядало схожим на інші мови програмування.</p>
+<p>Атрибут <span class="blue">__call__</span> викликає ще два атрибути всередині себе.</p>
+<pre>
+def __call__(...):
+    ...
+    obj = __new__(...)
+    <span class="green"># виділяє пам'ять під об'єкт,</span>
+    <span class="green"># структурує, створює простір імен</span>
+    ...
+    __init__(obj, ...)
+    <span class="green"># заповнює прикладні атрибути в заготовці</span>
+    ...
+</pre>
+<p>Якщо клас перепише зверху атрибути <span class="blue">__new__</span> та <span class="blue">__init__</span>, то він візьме під контроль створення своїх інстансів, оскільки будуть викликатися його блоки кода. Клас стане творцем своїх інстансів.</p>
+<br>
+
+<h2>Конструктор __init__</h2>
+
+<p>Змінні, які привласнюються всередині класа, переробляються на атрибути класа. Атрибут <span class="blue">__call__</span> метакласа <span class="blue">type</span> закине їх в <span class="blue">__dict__</span> на етапі створення класа.</p>
+<pre>
+class Greeting:
+    <i>s</i> = "Hello"
+
+print(Greeting.__dict__) <span class="green"># буде містити змінну s як атрибут</span>
+</pre>
+<p>Якщо аналогічно треба заповнити <span class="blue">__dict__</span> інстанса, то прийнято переписувати зверху <span class="blue">__init__</span>.</p>
+<pre>
+class Foods:
+    def __init__(self, name, glycemic_index):
+       self.name = name
+       self.glycemic_index = glycemic_index
+
+<i>a</i> = Foods("Apple", 36) <span class="green"># створюємо інстанс</span>
+</pre>
+<p>При створенні інстанса виконається <span class="blue">type.__call__(Foods, 'Apple', 36)</span>. Він в свою чергу викличе підмінений <span class="blue">__init__(self, 'Apple', 36)</span>. Завдяки змінній <span class="blue">self</span>, клас задасть для свого інстанса його власні атрибути.</p>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - видалення об'єктів</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="object_delete_4.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 4:</h2>
+<p>Задана змінна <i>s</i>, що посилається на об'єкт.</p>
+<p>Після виведення на екран програма повинна явно видалити об'єкт "<span class="blue">Hello world!</span>".</p>
+<br>
+
+<h2>Видалення змінних та об'єктів</h2>
+
+<p>В пітоні все є об'єктом або вказівником на об'єкт.</p>
+<p><span class="blue"><i>s</i> = "Hello world!"</span></p>
+<p>Тут "<span class="blue">Hello world!</span>" є об'єктом, а <i>s</i> є змінною, яка вказує на об'єкт. Доки бодай одна змінна вказує на об'єкт, він не видаляється. Якщо немає жодної змінної, то він автоматично знищується.</p>
+<pre>
+<i>s</i> = "Hello world!"
+<span class="green"># створюється об'єкт, на який вказує s</span>
+
+<i>t</i> = <i>s</i>
+<span class="green"># вже дві змінних вказують на об'єкт</span>
+
+<i>s</i> = "bye-bye"
+<span class="green"># створюється новий об'єкт, на який вказує s.
+t продовжує вказувати на старий об'єкт.</span>
+
+<i>t</i> = <i>s</i>
+<span class="green"># об'єкт "Hello world!" знищується.
+На новий об'єкт "bye-bye" вказують t та s.</span>
+
+del <i>s</i>
+<span class="green"># об'єкт "bye-bye" залишається оскільки t все ще вказує на нього.</span>
+
+del <i>t</i>
+<span class="green"># об'єкт "bye-bye" знищується.</span>
+</pre>
+<p><span class="blue">del</span> знищує змінну або атрибут об'єкта.</p>
+<p>Треба сказати, що в кінці роботи програми (чи метода) видаляти змінні немає потреби, оскільки вони і так видаляться по завершенню. Вимога в завданні чисто тренувальна.</p>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

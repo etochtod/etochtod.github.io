@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - immutable та mutable</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="immutable_variables_6.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 6:</h2>
+<p>Змінна <i>s2</i> в результаті виконання кода повинна отримати значення "<span class="blue">HELLO WORLD!</span>".</p>
+<p>Список <i>list1</i> повинен залишитися з початковим значенням <span class="blue">[10, 20]</span>. Список <i>list2</i> повинен прийняти значення <span class="blue">[10, 20, 15]</span>.</p>
+<br>
+<h2>Mutable та immutable</h2>
+<p>Коли метод приймає параметри для обробки, то параметри можуть прийти до нього у вигляді <b>копії</b> об'єкта або <b>оригінала</b> об'єкта.</p>
+<p>Прикладом передавання копії може слугувати метод <span class="blue"><i>s</i>.upper()</span> - цьому методу передається копія рядка, і він міняє в цій копії літери на великі. Змінна <i>s</i> при цьому залишається як і була раніше.</p>
+<p>Прикладом передавання оригінала є <span class="blue"><i>list1</i>.append(15)</span> - йому передається сам список <i>list1</i> для прямої модифікації.</p>
+<p>В деяких мовах програмування можна явно задати як ми передаємо параметри до метода. В пітоні все залежить від типу даних. Певні типи даних завжди передаються як копія, вони називаються <b><span class="blue">immutable</span></b>, а інші передаються як оригінал - <b><span class="blue">mutable</span></b>.</p>
+<p>До <span class="blue">immutable</span> типів відносяться числа (<span class="blue"><i>i</i>=5</span>), рядки (<span class="blue"><i>s</i>="hi"</span>), булеві змінні (<span class="blue"><i>a</i>=True</span>), кортежі (<span class="blue"><i>c</i> = (10, 20, 15)</span>), та ще декілька простих типів.</p>
+<p>До <span class="blue">mutable</span> відносяться більш складні типи (<span class="blue"><i>lst</i> = [10, 20, 15]</span>). Вони важкі, і їх накладно передавати, створюючи копію кожного разу.</p>
+<p>Таким чином, якщо ми передаємо методу рядок як параметр, то це ніяк не може бути оригінал. Метод <span class="blue"><i>s</i>.upper()</span> не має доступу до оригінального рядка. Він змушений повернути модифіковану копію або змінній, або передати далі вправо по ланцюгу методів.</p>
+<p>Метод <span class="blue"><i>lst</i>.append(15)</span> навпаки, отримує завжди оригінал списка. Він одразу поміняв оригінал і нічого далі не передає.</p>
+<p>Отримавши оригінал списка, методу ніщо не заважає потім зробити копію і повернути її. Метод <span class="blue"><i>lst</i>.copy()</span> саме це і робить. Він отримує оригінал <i>lst</i> і повертає його копію.</p>
+<pre>
+<i>new_list</i> = <i>lst</i>.copy() <span class="green"># зробити копію змінної lst</span>
+</pre>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>

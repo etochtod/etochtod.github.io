@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пітон - Ланцюг викликів методів</title>
+    <link rel="stylesheet" type="text/css" href="pages.css" />
+    <script type="text/javascript" src="pages.js"></script>
+    <script defer src="pyscript.js"></script>
+    <script type="text/javascript" src="method_chaining_5.js"></script>
+</head>
+<body onload="start()">
+    <div id="left">
+        <div id="navbar">
+            <a href="../index.html">На головну</a>
+        </div>
+        <article>
+<h2>Завдання 5:</h2>
+<p>Переставити (не прибирати) три методи так щоб на екран вивелося вітання, де кожне слово починається з великої літери.</p>
+<span class="blue">upper().title().lower()</span>
+<p>Виправити код з <i>lst</i>, щоб <i>lst</i> дорівнювало [10, 20, 15]</p>
+<br>
+<br>
+<h2>Ланцюг з методів</h2>
+
+<p>Синтаксис з крапкою є своєрідним конвеєром по переробці даних, де дані починають свій шлях зліва. У виразі<br><span class="blue">a = b.method1().method2().method3()</span> послідовність виконання буде наступною:</p>
+<ul>
+    <li>береться об'єкт <i>b</i>.</li>
+    <li><span class="blue">методу1</span> передається значення <i>b</i>. <span class="blue">Метод1</span> виконується.</li>
+    <li>результат виконання передається <span class="blue">методу2</span>. <span class="blue">Метод2</span> виконується.</li>
+    <li>результат виконання передається <span class="blue">методу3</span>. <span class="blue">Метод3</span> виконується.</li>
+    <li>результат виконання привласнюється змінній <i>a</i>. Вона починає вказувати на цей об'єкт-результат. І цей результат не знищується після виконання рядка завдяки цій змінній.</li>
+</ul>
+<p>Тобто, якщо ми маємо ланцюг з методів, поділених крапками, то виконання йде зліва направо, так як ми чи читаємо. В кінці, після виконання методів, результат привласнюється змінній.</p>
+<br>
+<h2>Обрив ланцюга</h2>
+<p>Деякі методи просто щось роблять і не повертають результат. Такий метод буде крайнім зправа, після нього вже не можна продовжувати ланцюг. Результат привласнювати змінній також немає сенсу. Його немає. <span class="blue">None</span></p>
+<pre>
+<i>lst</i> = [10, 20]
+<i>lst</i>.append(15) <span class="green"># додати 15 в кінець списка</span>
+print(<i>lst</i>) <span class="green"># [10, 20, 15]</span>
+</pre>
+<p>Цей приклад виконує метод <span class="blue">append()</span> який додає в кінець списка нове значення. Метод не повертає результат - він просто міняє список який йому переданий. Після нього вже не вийде продовжувати ланцюг, а якщо результат привласнити змінній, то її значення буде <span class="blue">None</span>.</p>
+        </article>
+    </div>
+    <div id="right">
+        <textarea id="tArea" name="pcode" rows="12" cols="50"></textarea>
+        <div id="dragger"></div>
+        <div>
+            <span id="run" onclick="run()">RUN</span><span id="reset" onclick="reset()">RESET</span>
+            <span id="next" onclick="next()">NEXT</span>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+</body>
+</html>
